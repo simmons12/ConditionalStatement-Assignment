@@ -6,14 +6,24 @@ namespace ConditionalStatement
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("What total score out of 100 do you expect to get in ISM 4300?");
-            Console.WriteLine("(Please round to the nearest whole number)");
+            Console.WriteLine("What total score (out of 100) do you expect to get in ISM 4300?");
+            Console.WriteLine("**(Please round to the nearest whole number)**");
 
-            int Grade = 0;
+            string UserInput;
+            int Grade;
+                       
+            UserInput = Console.ReadLine();
+            Console.WriteLine(" You entered: " + UserInput);
 
-            Console.WriteLine(Grade);
-
-            if (Grade <= 100 && Grade >= 98)
+            if (!Int32.TryParse(UserInput, out Grade))
+            {
+                Console.WriteLine("Invalid data input");
+            }
+            else if ((Grade < 0) || (Grade > 100))
+            {
+                Console.WriteLine(" Error message: Out of range: Enter a number between 0 and 100");
+            }
+            else if (Grade <= 100 && Grade >= 98)
             {
                 Console.WriteLine("A+");
             }
@@ -61,15 +71,10 @@ namespace ConditionalStatement
             {
                 Console.WriteLine("D-");
             }
-            else if (Grade <= 59)
+            else
             {
                 Console.WriteLine("F");
             }
-            else
-            {
-                Console.WriteLine("Sorry but the number you entered is invalid.");
-            }
-
         }
     }
 }
